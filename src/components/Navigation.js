@@ -6,16 +6,16 @@ const Navigation = () => {
     <nav>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">Hello Weather</Link>
         </li>
         <li>
-          <Link to="/calc">calc</Link>
+          <Link to="/calc">채점하기</Link>
         </li>
         <li>
-          <Link to="/string">string</Link>
+          <Link to="/string">정답코드</Link>
         </li>
         <li>
-          <Link to="/criteria">criteria</Link>
+          <Link to="/criteria">채점기준</Link>
         </li>
       </ul>
     </nav>
