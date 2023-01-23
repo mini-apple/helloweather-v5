@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 
-function InputTemperature({ temperature, setTemperature }) {
+function InputTemperature({ data, setData }) {
+  const [text, setText] = useState(null);
+
   const onChange = (event) => {
-    setTemperature(event.target.value);
+    const {
+      target: { value },
+    } = event;
+
+    setData({ ...data, temperature: value });
+    setText(value);
   };
+
   return (
     <Box noValidate autoComplete="off" sx={{ width: 120 }}>
       <TextField
@@ -15,7 +23,7 @@ function InputTemperature({ temperature, setTemperature }) {
         variant="outlined"
         type="number"
         onChange={onChange}
-        value={temperature}
+        value={text}
         InputProps={{
           endAdornment: <InputAdornment position="end">°C</InputAdornment>,
         }}

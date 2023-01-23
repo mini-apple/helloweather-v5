@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-function InputWindDiriction({ windDirection, setWindDirection }) {
+function InputWindDiriction({ data, setData }) {
+  const [text, setText] = useState(null);
+
   const onChange = (event) => {
-    setWindDirection(event.target.value);
+    const {
+      target: { value },
+    } = event;
+
+    setData({ ...data, windDirection: value });
+    setText(value);
   };
 
   return (
@@ -17,7 +24,7 @@ function InputWindDiriction({ windDirection, setWindDirection }) {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={windDirection}
+          value={text}
           label="WindDirection"
           onChange={onChange}
         >

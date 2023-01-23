@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-function InputWindSpeed({ cloudiness, setCloudiness }) {
+function InputWindSpeed({ data, setData }) {
+  const [text, setText] = useState(null);
+
   const onChange = (event) => {
-    setCloudiness(event.target.value);
+    const {
+      target: { value },
+    } = event;
+
+    setData({ ...data, cloudiness: value });
+    setText(value);
   };
 
   return (
@@ -17,7 +24,7 @@ function InputWindSpeed({ cloudiness, setCloudiness }) {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={cloudiness}
+          value={text}
           label="cloudiness"
           onChange={onChange}
         >

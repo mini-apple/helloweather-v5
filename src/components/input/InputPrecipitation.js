@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-function InputPrecipitation({ precipitation, setPrecipitation }) {
+function InputPrecipitation({ data, setData }) {
+  const [text, setText] = useState(null);
+
   const onChange = (event) => {
-    setPrecipitation(event.target.value);
+    const {
+      target: { value },
+    } = event;
+
+    setData({ ...data, precipitation: value });
+    setText(value);
   };
 
   return (
@@ -17,7 +24,7 @@ function InputPrecipitation({ precipitation, setPrecipitation }) {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={precipitation}
+          value={text}
           label="precipitation"
           onChange={onChange}
         >

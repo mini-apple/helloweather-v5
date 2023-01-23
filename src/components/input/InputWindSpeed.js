@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-function InputWindSpeed({ windSpeed, setWindSpeed }) {
-  const onChange = (event) => {
-    setWindSpeed(event.target.value);
-  };
+function InputWindSpeed({ data, setData }) {
+  const [text, setText] = useState(null);
 
+  const onChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+
+    setData({ ...data, windSpeed: value });
+    setText(value);
+  };
   return (
     <Box sx={{ width: 120 }}>
       <FormControl fullWidth>
@@ -17,7 +23,7 @@ function InputWindSpeed({ windSpeed, setWindSpeed }) {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={windSpeed}
+          value={text}
           label="WindSpeed"
           onChange={onChange}
         >

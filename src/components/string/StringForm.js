@@ -7,66 +7,48 @@ import InputTemperature from "components/input/InputTemperature";
 import InputPrecipitation from "components/input/InputPrecipitation";
 
 function StringForm() {
-  const [cloudinessA1, setCloudinessA1] = useState("");
-  const [cloudinessA2, setCloudinessA2] = useState("");
-  const [windDirectionA1, setWindDirectionA1] = useState("");
-  const [windDirectionA2, setWindDirectionA2] = useState("");
-  const [windSpeedA1, setWindSpeedA1] = useState("");
-  const [windSpeedA2, setWindSpeedA2] = useState("");
-  const [temperatureA1, setTemperatureA1] = useState("");
-  const [temperatureA2, setTemperatureA2] = useState("");
-  const [precipitationA1, setPrecipitationA1] = useState("");
-  const [precipitationA2, setPrecipitationA2] = useState("");
+  const [L1, setL1] = useState({
+    cloudiness: null,
+    windDirection: null,
+    windSpeed: null,
+    temperature: null,
+    precipitation: null,
+  });
+  const [L2, setL2] = useState({
+    cloudiness: null,
+    windDirection: null,
+    windSpeed: null,
+    temperature: null,
+    precipitation: null,
+  });
 
   const [string, setString] = useState("");
 
   const onConvert = () => {
     setString(
-      `${cloudinessA1}/${windDirectionA1}/${windSpeedA1}/${temperatureA1}/${precipitationA1}/${cloudinessA2}/${windDirectionA2}/${windSpeedA2}/${temperatureA2}/${precipitationA2}`
+      `${L1.cloudiness}/${L1.windDirection}/${L1.windSpeed}/${L1.temperature}/${L1.precipitation}/${L2.cloudiness}/${L2.windDirection}/${L2.windSpeed}/${L2.temperature}/${L2.precipitation}`
     );
+    console.log(L1);
   };
 
   const onCopy = () => {
     navigator.clipboard.writeText(string);
   };
+
   return (
     <>
       지역1
-      <InputCloudiness
-        cloudiness={cloudinessA1}
-        setCloudiness={setCloudinessA1}
-      />
-      <InputWindDiriction
-        windDirection={windDirectionA1}
-        setWindDirection={setWindDirectionA1}
-      />
-      <InputWindSpeed windSpeed={windSpeedA1} setWindSpeed={setWindSpeedA1} />
-      <InputTemperature
-        temperature={temperatureA1}
-        setTemperature={setTemperatureA1}
-      />
-      <InputPrecipitation
-        precipitation={precipitationA1}
-        setPrecipitation={setPrecipitationA1}
-      />
+      <InputCloudiness data={L1} setData={setL1} />
+      <InputWindDiriction data={L1} setData={setL1} />
+      <InputWindSpeed data={L1} setData={setL1} />
+      <InputTemperature data={L1} setData={setL1} />
+      <InputPrecipitation data={L1} setData={setL1} />
       지역2
-      <InputCloudiness
-        cloudiness={cloudinessA2}
-        setCloudiness={setCloudinessA2}
-      />
-      <InputWindDiriction
-        windDirection={windDirectionA2}
-        setWindDirection={setWindDirectionA2}
-      />
-      <InputWindSpeed windSpeed={windSpeedA2} setWindSpeed={setWindSpeedA2} />
-      <InputTemperature
-        temperature={temperatureA2}
-        setTemperature={setTemperatureA2}
-      />
-      <InputPrecipitation
-        precipitation={precipitationA2}
-        setPrecipitation={setPrecipitationA2}
-      />
+      <InputCloudiness data={L2} setData={setL2} />
+      <InputWindDiriction data={L2} setData={setL2} />
+      <InputWindSpeed data={L2} setData={setL2} />
+      <InputTemperature data={L2} setData={setL2} />
+      <InputPrecipitation data={L2} setData={setL2} />
       <Button variant="contained" onClick={onConvert}>
         Convert
       </Button>
