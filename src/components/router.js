@@ -5,17 +5,24 @@ import Offline__calc from "routes/Offline__calc";
 import Offline__criteria from "routes/Offline__criteria";
 import Offline__string from "routes/Offline__string";
 import Navigation from "components/Navigation";
+import Box from "@mui/material/Box";
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
-      <Navigation />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/calc" element={<Offline__calc />} />
-        <Route path="/criteria" element={<Offline__criteria />} />
-        <Route path="/string" element={<Offline__string />} />
-      </Routes>
+      <Box className="main-a">
+        <Box className="main-b">
+          <Navigation />
+        </Box>
+        <Box className="main-c">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/calc" element={<Offline__calc />} />
+            <Route path="/criteria" element={<Offline__criteria />} />
+            <Route path="/string" element={<Offline__string />} />
+          </Routes>
+        </Box>
+      </Box>
     </BrowserRouter>
   );
 };

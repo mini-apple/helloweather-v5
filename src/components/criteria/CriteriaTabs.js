@@ -56,9 +56,14 @@ function CriteriaTabs() {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%" }} className="box">
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Tabs value={value} onChange={handleChange} aria-label="Criteria tab">
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="Criteria tab"
+          centered
+        >
           <Tab label="운량" {...a11yProps(0)} />
           <Tab label="풍향" {...a11yProps(1)} />
           <Tab label="풍속" {...a11yProps(2)} />

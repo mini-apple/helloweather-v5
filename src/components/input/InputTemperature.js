@@ -16,7 +16,7 @@ function InputTemperature({ data, setData }) {
   };
 
   return (
-    <Box noValidate autoComplete="off" sx={{ width: 120 }}>
+    <Box component="form" noValidate autoComplete="off" sx={{ width: 120 }}>
       <TextField
         id="outlined-basic"
         label="기온"
@@ -27,6 +27,7 @@ function InputTemperature({ data, setData }) {
         InputProps={{
           endAdornment: <InputAdornment position="end">°C</InputAdornment>,
         }}
+        size="small"
       />
     </Box>
   );

@@ -18,7 +18,7 @@ function InputWindSpeed({ data, setData }) {
   };
   return (
     <Box sx={{ width: 120 }}>
-      <FormControl fullWidth>
+      <FormControl fullWidth size="small">
         <InputLabel id="demo-simple-select-label">풍속</InputLabel>
         <Select
           labelId="demo-simple-select-label"

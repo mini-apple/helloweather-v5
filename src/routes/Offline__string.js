@@ -4,7 +4,6 @@ import StringForm from "components/string/StringForm";
 const Offline__string = () => {
   return (
     <>
-      <div>This is String page</div>
       <StringForm />
     </>
   );

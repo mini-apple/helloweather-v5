@@ -1,0 +1,92 @@
+:root {
+  --text-color: #000000;
+  --background-color: #f6f6f6;
+  --box-color: #ffffff;
+  --accent-color: #d49466;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+}
+
+/* 레이아웃 설정 */
+.main-a {
+  padding: 2.5rem 0rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.main-b {
+  width: 15rem;
+  margin: 0rem 2.5rem 0rem 0rem;
+}
+
+.main-c {
+  width: 31.25rem;
+}
+
+/* 네비게이션 바 */
+
+.nav-ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.nav-li {
+  display: block;
+  line-height: 3rem;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.navigation-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.navigation-home {
+  border: 1px solid rgba(5, 5, 5, 10%);
+  border-radius: 1rem;
+  height: 3rem;
+  margin: 0rem 0rem 2rem 0rem;
+  display: block;
+}
+
+.navigation-offline {
+  border: 1px solid rgba(5, 5, 5, 10%);
+  border-radius: 1rem;
+  display: block;
+}
+
+.box {
+  border: 1px solid rgba(5, 5, 5, 10%);
+  background-color: var(--box-color);
+  padding: 0px;
+  text-align: center;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+.flex-item {
+  padding: 10px;
+  flex: content;
+}
+
+@media screen and (max-width: 768px) {
+  .box {
+    border-radius: 0px;
+    border: 0px;
+    margin: 0px;
+  }
+}
