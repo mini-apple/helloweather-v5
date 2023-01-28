@@ -16,8 +16,14 @@ function InputTemperature({ data, setData }) {
   };
 
   return (
-    <Box component="form" noValidate autoComplete="off" sx={{ width: 120 }}>
+    <Box
+      className="form-element"
+      component="form"
+      noValidate
+      autoComplete="off"
+    >
       <TextField
+        fullWidth
         id="outlined-basic"
         label="기온"
         variant="outlined"

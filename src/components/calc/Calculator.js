@@ -12,6 +12,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import ButtonGroup from "@mui/material/ButtonGroup";
+import IconButton from "@mui/material/IconButton";
+
+import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded";
+import SubdirectoryArrowLeftRoundedIcon from "@mui/icons-material/SubdirectoryArrowLeftRounded";
 
 import InputCloudiness from "components/input/InputCloudiness";
 import InputWindDiriction from "components/input/InputWindDirenction";
@@ -315,35 +319,50 @@ function Calculator() {
 
   return (
     <Box>
-      <Box className="box">
-        <TextField
-          id="outlined-basic"
-          label="정답코드"
-          variant="outlined"
-          value={string}
-          onChange={onStringChange}
-          size="small"
-        />
-        <Button variant="outlined" onClick={onConvert}>
-          정답입력
-        </Button>
-        {ansVerify ? <div>정답입력확인!</div> : <div>정답미입력</div>}
-        <div>0/0/0/0/0/1/22.5/1/1/1</div>
+      <Box className="calc-container">
+        <Box className="calc-title">정답코드 입력하기</Box>
+        <Box className="string-input-container">
+          <TextField
+            fullWidth
+            id="outlined-basic"
+            label="정답코드"
+            variant="outlined"
+            value={string}
+            onChange={onStringChange}
+            size="small"
+          />
+          <IconButton
+            variant="outlined"
+            onClick={onConvert}
+            className="string-input-button"
+            color="primary"
+          >
+            <SubdirectoryArrowLeftRoundedIcon />
+          </IconButton>
+        </Box>
+        {ansVerify ? (
+          <Box className="ansVerify-container">
+            <CheckCircleOutlineRoundedIcon fontSize="small" />
+            <Box>Verified!</Box>
+          </Box>
+        ) : (
+          <Box></Box>
+        )}
       </Box>
-      <Box className="box ">
-        <div>나의 답안 </div>
-        <Divider />
-        <Box className="flex-container">
-          <Box className="box flex-item">
-            <div>지역1</div>
+
+      <Box className="calc-container">
+        <Box className="calc-title">나의 답안</Box>
+        <Box className="ans-input-container">
+          <Box className="location-container">
+            <Box className="location-title">지역1</Box>
             <InputCloudiness data={L1} setData={setL1} />
             <InputWindDiriction data={L1} setData={setL1} />
             <InputWindSpeed data={L1} setData={setL1} />
             <InputTemperature data={L1} setData={setL1} />
             <InputPrecipitation data={L1} setData={setL1} />
           </Box>
-          <Box className="box flex-item">
-            <div>지역2</div>
+          <Box className="location-container">
+            <Box className="location-title">지역2</Box>
             <InputCloudiness data={L2} setData={setL2} />
             <InputWindDiriction data={L2} setData={setL2} />
             <InputWindSpeed data={L2} setData={setL2} />
@@ -352,8 +371,9 @@ function Calculator() {
           </Box>
         </Box>
       </Box>
-      <Box className="box">
-        <div>근거개수 및 채점</div>
+
+      <Box className="calc-container">
+        <Box className="calc-title">근거개수 및 채점하기</Box>
         <Slider
           aria-label="Evidence"
           defaultValue={10}
@@ -365,18 +385,18 @@ function Calculator() {
           min={0}
           max={10}
         />
-        <ButtonGroup
-          variant="contained"
-          aria-label="outlined primary button group"
-        >
-          <Button variant="outlined">Reset</Button>
-          <Button variant="outlined" onClick={onScore}>
+        <ButtonGroup fullWidth disableElevation variant="outlined" size="small">
+          <Button variant="outlined" color="error">
+            Reset
+          </Button>
+          <Button variant="outlined" color="primary" onClick={onScore}>
             Score
           </Button>
         </ButtonGroup>
       </Box>
 
-      <div>
+      <Box className="calc-container">
+        <Box className="calc-title">채점결과</Box>
         <TableContainer component={Paper}>
           <Table size="small">
             <TableHead>
@@ -437,7 +457,7 @@ function Calculator() {
             </TableBody>
           </Table>
         </TableContainer>
-      </div>
+      </Box>
     </Box>
   );
 }

@@ -18,7 +18,7 @@ function InputWindDiriction({ data, setData }) {
   };
 
   return (
-    <Box sx={{ width: 120 }}>
+    <Box className="form-element">
       <FormControl fullWidth size="small">
         <InputLabel id="demo-simple-select-label">풍향</InputLabel>
         <Select
