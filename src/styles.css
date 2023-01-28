@@ -76,8 +76,8 @@ body {
   text-align: center;
 }
 
-/* 채점하기 */
-.calc-container {
+/* 컨테이너 레이아웃 */
+.container {
   border: 1px solid rgba(5, 5, 5, 10%);
   border-radius: 1rem;
   background-color: var(--box-color);
@@ -85,12 +85,13 @@ body {
   margin: 0rem 0rem 1.5rem 0rem;
 }
 
-.calc-title {
+.title {
   font-size: 1.1rem;
   font-weight: 500;
   margin: 0rem 0rem 1rem 0rem;
 }
 
+/* 채점하기 */
 /* 정답코드 */
 .string-input-container {
   display: flex;
@@ -112,7 +113,7 @@ body {
 }
 
 /* 나의 답안 */
-.ans-input-container {
+.input-container {
   display: flex;
   justify-content: center;
 }
@@ -137,6 +138,43 @@ body {
 }
 
 /* 채점기준 */
+
+/* 정답생성 */
+.string-ul {
+  border-radius: 0.5rem;
+  background-color: var(--blue-bg);
+  color: var(--blue);
+  font-size: 0.85rem;
+  padding: 0.5rem 0rem 0.5rem 2rem;
+  margin: 0rem;
+}
+
+.string-location-title {
+  text-align: center;
+  background-color: var(--green-bg);
+  color: var(--green);
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin: 1rem 0rem 1.5rem 0rem;
+  padding: 0.2rem;
+  border-radius: 1rem;
+}
+
+.string-convert-button {
+  margin: 1rem 1rem 0.5rem 1rem;
+}
+
+.string-code-container {
+  display: flex;
+  justify-content: space-between;
+  line-height: 2.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--gray-bg);
+}
+
+.string-code-padding {
+  padding: 0rem 0rem 0rem 2rem;
+}
 
 @media screen and (max-width: 768px) {
 }

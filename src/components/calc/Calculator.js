@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Slider from "@mui/material/Slider";
@@ -319,8 +318,8 @@ function Calculator() {
 
   return (
     <Box>
-      <Box className="calc-container">
-        <Box className="calc-title">정답코드 입력하기</Box>
+      <Box className="container">
+        <Box className="title">정답코드 입력하기</Box>
         <Box className="string-input-container">
           <TextField
             fullWidth
@@ -350,9 +349,9 @@ function Calculator() {
         )}
       </Box>
 
-      <Box className="calc-container">
-        <Box className="calc-title">나의 답안</Box>
-        <Box className="ans-input-container">
+      <Box className="container">
+        <Box className="title">나의 답안</Box>
+        <Box className="input-container">
           <Box className="location-container">
             <Box className="location-title">지역1</Box>
             <InputCloudiness data={L1} setData={setL1} />
@@ -372,8 +371,8 @@ function Calculator() {
         </Box>
       </Box>
 
-      <Box className="calc-container">
-        <Box className="calc-title">근거개수 및 채점하기</Box>
+      <Box className="container">
+        <Box className="title">근거개수 및 채점하기</Box>
         <Slider
           aria-label="Evidence"
           defaultValue={10}
@@ -395,8 +394,8 @@ function Calculator() {
         </ButtonGroup>
       </Box>
 
-      <Box className="calc-container">
-        <Box className="calc-title">채점결과</Box>
+      <Box className="container">
+        <Box className="title">채점결과</Box>
         <TableContainer component={Paper}>
           <Table size="small">
             <TableHead>
