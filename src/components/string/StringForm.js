@@ -31,14 +31,23 @@ function StringForm() {
   const [string, setString] = useState("");
 
   const onConvert = () => {
-    if (L1.cloudiness === null || L1.windDirection === null) {
-      alert("미입력항목 존재!");
+    if (
+      L1.cloudiness === null ||
+      L1.windDirection === null ||
+      L1.windSpeed === null ||
+      L1.temperature === null ||
+      L1.precipitation === null ||
+      L2.cloudiness === null ||
+      L2.windDirection === null ||
+      L2.windSpeed === null ||
+      L2.temperature === null ||
+      L2.precipitation === null
+    ) {
+      alert("입력되지 않은 항목이 있습니다. \n모든 항목을 입력해주세요!");
       return;
     }
-    setString(
-      `${L1.cloudiness}/${L1.windDirection}/${L1.windSpeed}/${L1.temperature}/${L1.precipitation}/${L2.cloudiness}/${L2.windDirection}/${L2.windSpeed}/${L2.temperature}/${L2.precipitation}`
-    );
-    console.log(L1);
+    const plainText = `${L1.cloudiness}/${L1.windDirection}/${L1.windSpeed}/${L1.temperature}/${L1.precipitation}/${L2.cloudiness}/${L2.windDirection}/${L2.windSpeed}/${L2.temperature}/${L2.precipitation}`;
+    setString(plainText);
   };
 
   const onCopy = () => {

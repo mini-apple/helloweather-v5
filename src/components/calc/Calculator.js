@@ -24,7 +24,7 @@ import InputPrecipitation from "components/input/InputPrecipitation";
 
 function Calculator() {
   const [finalAns, setFinalAns] = useState([]);
-  const [finalinp, setFinalInp] = useState([]);
+  const [finalInp, setFinalInp] = useState([]);
   const [string, setString] = useState("");
   const [evid, setEvid] = useState(50);
   const [fianlRes, setFianlRes] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
