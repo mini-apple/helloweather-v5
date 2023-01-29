@@ -112,7 +112,7 @@ body {
   margin: 1rem 0rem 0rem 0rem;
 }
 
-/* 나의 답안 */
+/* 나의 답안 페이지*/
 .input-container {
   display: flex;
   justify-content: center;
@@ -137,9 +137,7 @@ body {
   margin: 0rem 0rem 1rem 0rem;
 }
 
-/* 채점기준 */
-
-/* 정답생성 */
+/* 정답생성 페이지*/
 .string-ul {
   border-radius: 0.5rem;
   background-color: var(--blue-bg);
@@ -174,6 +172,37 @@ body {
 
 .string-code-padding {
   padding: 0rem 0rem 0rem 1rem;
+}
+
+/* 채점기준 페이지 */
+.criteria-ul {
+  background-color: var(--red-bg);
+  color: var(--red);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0rem 0.5rem 1.8rem;
+  margin: 0rem 0rem 1.2rem 0rem;
+  font-size: 0.8rem;
+}
+
+.criteria-table {
+  max-height: 20rem;
+}
+
+.criteria-fullscreen {
+  display: flex;
+  justify-content: end;
+  margin: 0rem 0rem 1rem 0rem;
+}
+
+.criteria-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid rgba(5, 5, 5, 10%);
+  border-radius: 1rem;
+  padding: 1rem;
 }
 
 @media screen and (max-width: 768px) {

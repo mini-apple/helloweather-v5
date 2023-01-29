@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -56,7 +56,8 @@ function CriteriaTabs() {
   };
 
   return (
-    <Box sx={{ width: "100%" }} className="box">
+    <Box className="container">
+      <Box className="title">채점기준 및 채점표</Box>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
