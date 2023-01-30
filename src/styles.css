@@ -193,6 +193,11 @@ body {
   padding: 0rem 0rem 0rem 1rem;
 }
 
+.evid-container {
+  text-align: center;
+  padding: 0.5rem 0.5rem 1rem 0.5rem;
+}
+
 /* 채점기준 페이지 */
 .criteria-ul {
   background-color: var(--red-bg);

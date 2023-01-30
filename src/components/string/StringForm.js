@@ -28,6 +28,17 @@ function StringForm() {
     precipitation: null,
   });
 
+  const [text0, setText0] = useState("");
+  const [text1, setText1] = useState("");
+  const [text2, setText2] = useState("");
+  const [text3, setText3] = useState("");
+  const [text4, setText4] = useState("");
+  const [text5, setText5] = useState("");
+  const [text6, setText6] = useState("");
+  const [text7, setText7] = useState("");
+  const [text8, setText8] = useState("");
+  const [text9, setText9] = useState("");
+
   const [string, setString] = useState("");
 
   const onConvert = () => {
@@ -65,20 +76,70 @@ function StringForm() {
         <Box className="input-container">
           <Box className="location-container">
             <Box className="string-location-title">지역1</Box>
-            <InputCloudiness data={L1} setData={setL1} />
-            <InputWindDiriction data={L1} setData={setL1} />
-            <InputWindSpeed data={L1} setData={setL1} />
-            <InputTemperature data={L1} setData={setL1} />
-            <InputPrecipitation data={L1} setData={setL1} />
+            <InputCloudiness
+              data={L1}
+              setData={setL1}
+              text={text0}
+              setText={setText0}
+            />
+            <InputWindDiriction
+              data={L1}
+              setData={setL1}
+              text={text1}
+              setText={setText1}
+            />
+            <InputWindSpeed
+              data={L1}
+              setData={setL1}
+              text={text2}
+              setText={setText2}
+            />
+            <InputTemperature
+              data={L1}
+              setData={setL1}
+              text={text3}
+              setText={setText3}
+            />
+            <InputPrecipitation
+              data={L1}
+              setData={setL1}
+              text={text4}
+              setText={setText4}
+            />
           </Box>
 
           <Box className="location-container">
             <Box className="string-location-title">지역2</Box>
-            <InputCloudiness data={L2} setData={setL2} />
-            <InputWindDiriction data={L2} setData={setL2} />
-            <InputWindSpeed data={L2} setData={setL2} />
-            <InputTemperature data={L2} setData={setL2} />
-            <InputPrecipitation data={L2} setData={setL2} />
+            <InputCloudiness
+              data={L2}
+              setData={setL2}
+              text={text5}
+              setText={setText5}
+            />
+            <InputWindDiriction
+              data={L2}
+              setData={setL2}
+              text={text6}
+              setText={setText6}
+            />
+            <InputWindSpeed
+              data={L2}
+              setData={setL2}
+              text={text7}
+              setText={setText7}
+            />
+            <InputTemperature
+              data={L2}
+              setData={setL2}
+              text={text8}
+              setText={setText8}
+            />
+            <InputPrecipitation
+              data={L2}
+              setData={setL2}
+              text={text9}
+              setText={setText9}
+            />
           </Box>
         </Box>
 

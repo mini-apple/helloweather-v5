@@ -31,10 +31,12 @@ export default function StringInput({ setAnswer }) {
     const inpList = string.split("/");
     const newList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-    if (inpList.length === 10) {
+    if (inpList.length !== 10) {
+      setAnsVerify(false);
+      alert("Unvalid string code!");
+      return;
+    } else if (inpList.length === 10) {
       setAnsVerify(true);
-      // 정답코드 잘라서 설정해주기
-      setAnswer(inpList);
 
       // 3.정답 표시해주기
       // 3-1. L1 운량
@@ -183,6 +185,12 @@ export default function StringInput({ setAnswer }) {
       }
     }
     setAnswerList(newList);
+
+    // 문자 => 숫자 변환
+    for (let i = 0; i < 10; i++) {
+      inpList[i] = parseFloat(inpList[i]);
+    }
+    setAnswer(inpList);
   };
 
   const [open, setOpen] = useState(false);

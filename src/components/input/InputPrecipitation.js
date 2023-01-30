@@ -5,9 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-function InputPrecipitation({ data, setData }) {
-  const [text, setText] = useState(null);
-
+function InputPrecipitation({ data, setData, text, setText }) {
   const onChange = (event) => {
     const {
       target: { value },

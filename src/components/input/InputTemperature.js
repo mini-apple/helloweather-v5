@@ -3,9 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 
-function InputTemperature({ data, setData }) {
-  const [text, setText] = useState(null);
-
+function InputTemperature({ data, setData, text, setText }) {
   const onChange = (event) => {
     const {
       target: { value },
