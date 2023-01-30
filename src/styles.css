@@ -35,7 +35,7 @@ body {
 }
 
 .main-c {
-  width: 31.25rem;
+  width: 35rem;
 }
 
 /* 네비게이션 바 */
@@ -104,12 +104,31 @@ body {
 
 .ansVerify-container {
   display: flex;
+  justify-content: start;
+}
+
+.ansVerify {
+  display: flex;
   justify-content: center;
   border-radius: 1rem;
   font-size: 0.8rem;
+  width: 5rem;
+  line-height: 1.2rem;
   color: var(--green);
   background-color: var(--green-bg);
   margin: 1rem 0rem 0rem 0rem;
+}
+
+.view-answer {
+  display: flex;
+  justify-content: center;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  width: 3.8rem;
+  line-height: 1.2rem;
+  color: var(--blue);
+  background-color: var(--blue-bg);
+  margin: 1rem 0rem 0rem 0.5rem;
 }
 
 /* 나의 답안 페이지*/
