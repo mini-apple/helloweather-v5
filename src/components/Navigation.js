@@ -14,7 +14,16 @@ const Navigation = () => {
             </Link>
           </li>
         </Box>
+        <Box className="navigation-online">
+          <li>
+            <Link to="/calc" className="nav-li">
+              멤버
+            </Link>
+          </li>
+        </Box>
         <Box className="navigation-offline">
+          <Box className="navigation-title">오프라인</Box>
+          <Divider />
           <li>
             <Link to="/calc" className="nav-li">
               채점하기

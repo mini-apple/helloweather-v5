@@ -7,7 +7,7 @@ import Offline__string from "routes/Offline__string";
 import Navigation from "components/Navigation";
 import Box from "@mui/material/Box";
 
-const AppRouter = () => {
+const AppRouter = ({ isLoggedin, setIsLoggedIn }) => {
   return (
     <BrowserRouter>
       <Box className="main-a">
@@ -16,7 +16,12 @@ const AppRouter = () => {
         </Box>
         <Box className="main-c">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={
+                <Home isLoggedin={isLoggedin} setIsLoggedIn={setIsLoggedIn} />
+              }
+            />
             <Route path="/calc" element={<Offline__calc />} />
             <Route path="/criteria" element={<Offline__criteria />} />
             <Route path="/string" element={<Offline__string />} />

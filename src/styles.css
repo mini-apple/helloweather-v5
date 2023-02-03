@@ -69,6 +69,23 @@ body {
   text-align: center;
 }
 
+.navigation-title {
+  background-color: var(--gray-bg);
+  color: var(--gray);
+  border-radius: 1rem 1rem 0rem 0rem;
+  text-align: center;
+  padding: 0rem 1rem;
+  font-size: 0.9rem;
+}
+
+.navigation-online {
+  border: 1px solid rgba(5, 5, 5, 10%);
+  border-radius: 1rem;
+  display: block;
+  text-align: center;
+  margin: 0rem 0rem 2rem 0rem;
+}
+
 .navigation-offline {
   border: 1px solid rgba(5, 5, 5, 10%);
   border-radius: 1rem;
@@ -90,7 +107,11 @@ body {
   font-weight: 500;
   margin: 0rem 0rem 1rem 0rem;
 }
+/* 온라인 */
+.sign-in-email-container {
+}
 
+/* 오프라인 */
 /* 채점하기 */
 /* 정답코드 */
 .string-input-container {
