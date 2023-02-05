@@ -8,6 +8,7 @@ import {
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
 
 function CreateUser({ setCreateAccout, setIsLoggedIn }) {
   const [email, setEmail] = useState("");
@@ -69,42 +70,47 @@ function CreateUser({ setCreateAccout, setIsLoggedIn }) {
       <Box className="title">회원가입</Box>
       <Box className="sign-in-email-container">
         <Box>
-          <Box>email</Box>
-          <TextField
-            name="email"
-            label="E-mail"
-            variant="outlined"
-            size="small"
-            value={email}
-            onChange={onChange}
-          />
+          <Box>
+            <Box>email</Box>
+            <TextField
+              name="email"
+              label="E-mail"
+              variant="outlined"
+              size="small"
+              value={email}
+              onChange={onChange}
+            />
+          </Box>
+          <Box>
+            <Box>비밀번호</Box>
+            <TextField
+              name="password"
+              label="Password"
+              variant="outlined"
+              size="small"
+              value={password}
+              onChange={onChange}
+            />
+          </Box>
+          <Box>
+            <Button variant="outlined" onClick={onEmailCreate}>
+              계정생성
+            </Button>
+          </Box>
         </Box>
-        <Box>
-          <Box>비밀번호</Box>
-          <TextField
-            name="password"
-            label="Password"
-            variant="outlined"
-            size="small"
-            value={password}
-            onChange={onChange}
-          />
-        </Box>
-        <Box>
-          <Button variant="outlined" onClick={onEmailCreate}>
-            계정생성
-          </Button>
-        </Box>
+
         <Box>
           <Button variant="outlined" onClick={onGoogleCreate}>
-            Continue with Google
+            Google로 계정생성
           </Button>
         </Box>
-        <Box>
-          <Button variant="text" onClick={() => setCreateAccout(false)}>
-            로그인하기
-          </Button>
-        </Box>
+      </Box>
+
+      <Box className="sign-in-toggle">
+        <Divider />
+        <Button variant="text" onClick={() => setCreateAccout(false)}>
+          로그인하기
+        </Button>
       </Box>
     </Box>
   );

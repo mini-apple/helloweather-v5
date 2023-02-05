@@ -13,7 +13,9 @@ const Home = ({ isLoggedin, setIsLoggedIn }) => {
         <Box className="title">환영합니다</Box>
       </Box>
       {isLoggedin ? (
-        <Box>로그인 완료됨</Box>
+        <Box className="container">
+          <Box className="title">로그인 완료됨</Box>
+        </Box>
       ) : (
         <>
           {createAccount ? (

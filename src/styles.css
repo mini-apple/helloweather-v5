@@ -109,6 +109,12 @@ body {
 }
 /* 온라인 */
 .sign-in-email-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sign-in-toggle {
+  margin-top: 1rem;
 }
 
 /* 오프라인 */

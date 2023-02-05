@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import { Link } from "react-router-dom";
 
-const Navigation = () => {
+const Navigation = ({ isLoggedin, userObj }) => {
   return (
     <nav className="navigation-container">
       <ul className="nav-ul">
@@ -15,8 +15,23 @@ const Navigation = () => {
           </li>
         </Box>
         <Box className="navigation-online">
+          {isLoggedin ? (
+            <li>
+              <Link to="/profile" className="nav-li">
+                {userObj.displayName}님의 Profile
+              </Link>
+            </li>
+          ) : (
+            <li>
+              <Link to="/profile" className="nav-li">
+                프로필
+              </Link>
+            </li>
+          )}
+
+          <Divider />
           <li>
-            <Link to="/calc" className="nav-li">
+            <Link to="/member" className="nav-li">
               멤버
             </Link>
           </li>
