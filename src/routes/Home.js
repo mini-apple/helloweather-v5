@@ -10,7 +10,7 @@ const Home = ({ isLoggedin, setIsLoggedIn }) => {
   return (
     <>
       <Box className="container">
-        <Box className="title">환영합니다</Box>
+        <Box className="title">환영합니다.</Box>
       </Box>
       {isLoggedin ? (
         <Box className="container">

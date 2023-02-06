@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import { Link } from "react-router-dom";
@@ -32,7 +32,7 @@ const Navigation = ({ isLoggedin, userObj }) => {
           <Divider />
           <li>
             <Link to="/member" className="nav-li">
-              멤버
+              Members
             </Link>
           </li>
         </Box>

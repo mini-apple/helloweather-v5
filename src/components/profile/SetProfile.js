@@ -20,7 +20,6 @@ import {
 } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { signOut, updateProfile } from "firebase/auth";
-import { Input } from "@mui/material";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 
 const SetProfile = ({ userObj }) => {

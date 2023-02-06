@@ -26,9 +26,14 @@ const AppRouter = ({ isLoggedin, setIsLoggedIn, userObj }) => {
             />
             <Route
               path="/profile"
-              element={<Online__profile userObj={userObj} />}
+              element={
+                <Online__profile userObj={userObj} isLoggedin={isLoggedin} />
+              }
             />
-            <Route path="/member" element={<Online__member />} />
+            <Route
+              path="/member"
+              element={<Online__member isLoggedin={isLoggedin} />}
+            />
             <Route path="/calc" element={<Offline__calc />} />
             <Route path="/criteria" element={<Offline__criteria />} />
             <Route path="/string" element={<Offline__string />} />

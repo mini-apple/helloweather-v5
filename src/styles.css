@@ -117,6 +117,66 @@ body {
   margin-top: 1rem;
 }
 
+/* 멤버카드 */
+
+.member-year-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.member-year-select {
+  width: 28rem;
+}
+
+.member-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.member-card {
+  border: 1px solid rgba(5, 5, 5, 10%);
+  border-radius: 1rem;
+  background-color: var(--box-color);
+  padding: 0.5rem;
+  width: 15rem;
+  display: flex;
+}
+
+.member-card-info {
+  width: 10rem;
+  margin: 0rem 0rem 0rem 0.5rem;
+}
+
+.member-card-name-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.member-card-spaceName {
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+.member-card-entranveUniv {
+  font-size: 0.85rem;
+}
+
+.member-card-activeYear-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.member-card-activeYear {
+  display: flex;
+  justify-content: center;
+  border-radius: 1rem;
+  width: 4rem;
+  font-size: 0.7rem;
+  color: var(--gray);
+  background-color: var(--gray-bg);
+  margin: 0.3rem 0.5rem 0rem 0rem;
+}
+
 /* 오프라인 */
 /* 채점하기 */
 /* 정답코드 */
