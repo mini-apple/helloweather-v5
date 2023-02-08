@@ -7,7 +7,6 @@ function App() {
   const [isLoggedin, setIsLoggedIn] = useState(false);
   const [init, setInit] = useState(false);
   const [userObj, setUserObj] = useState(null);
-  const [newName, setNewName] = useState("");
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {

@@ -8,17 +8,15 @@ const MemberCard = ({ userAttrObj }) => {
       <Avatar src={userAttrObj.attachmentUrl} sx={{ width: 65, height: 65 }} />
       <Box className="member-card-info">
         <Box className="member-card-name-box">
-          <Box>{userAttrObj.userName}</Box>
-          <Box className="member-card-spaceName">
-            {userAttrObj.userSpaceName}
-          </Box>
+          <Box>{userAttrObj.name}</Box>
+          <Box className="member-card-spaceName">{userAttrObj.spaceName}</Box>
         </Box>
 
         <Box className="member-card-entranveUniv">
-          학번: {userAttrObj.userEntranveUniv}
+          학번: {userAttrObj.entranceUniv}
         </Box>
         <Box className="member-card-activeYear-box">
-          {userAttrObj.userActiveYear.map((activeYear) => (
+          {userAttrObj.activeYear.map((activeYear) => (
             <Box key={activeYear} className="member-card-activeYear">
               {activeYear}
             </Box>

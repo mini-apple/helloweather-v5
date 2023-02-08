@@ -19,7 +19,7 @@ const MemberStatus = () => {
     }
   }
 
-  const [activeYear, setActiveYear] = useState(years[0]);
+  const [selectYear, setSelectYear] = useState(years[0]);
   const [titleYear, setTitleYear] = useState(years[0]);
   const [memberList, setMemberList] = useState([]);
 
@@ -31,24 +31,23 @@ const MemberStatus = () => {
     const {
       target: { value },
     } = event;
-    setActiveYear(value);
+    setSelectYear(value);
   };
 
   const onGetMember = async () => {
     const list = [];
-    const activeYearRef = collection(db, "users");
+    const selectYearRef = collection(db, "users");
     const q = query(
-      activeYearRef,
-      where("userActiveYear", "array-contains", activeYear)
+      selectYearRef,
+      where("activeYear", "array-contains", selectYear)
     );
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
       list.push(doc.data());
     });
     setMemberList(list);
-    setTitleYear(activeYear);
+    setTitleYear(selectYear);
   };
 
   return (
@@ -58,10 +57,10 @@ const MemberStatus = () => {
         <Box className="member-year-container">
           <Box className="member-year-select">
             <FormControl fullWidth size="small">
-              <InputLabel id="active-year">활동학기</InputLabel>
+              <InputLabel id="select-year">활동학기</InputLabel>
               <Select
-                labelId="active-year"
-                value={activeYear}
+                labelId="select-year"
+                value={selectYear}
                 label="활동학기"
                 onChange={handleChange}
               >
