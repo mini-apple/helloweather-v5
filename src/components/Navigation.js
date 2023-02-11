@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import { Link } from "react-router-dom";
 
-const Navigation = ({ isLoggedin, userObj }) => {
+const Navigation = ({ isLoggedIn, userObj }) => {
   return (
     <nav className="navigation-container">
       <ul className="nav-ul">
@@ -14,8 +14,8 @@ const Navigation = ({ isLoggedin, userObj }) => {
             </Link>
           </li>
         </Box>
-        <Box className="navigation-online">
-          {isLoggedin ? (
+        <Box className="navigation-profile">
+          {isLoggedIn ? (
             <li>
               <Link to="/profile" className="nav-li">
                 {userObj.displayName}님의 Profile
@@ -28,11 +28,19 @@ const Navigation = ({ isLoggedin, userObj }) => {
               </Link>
             </li>
           )}
-
           <Divider />
           <li>
             <Link to="/member" className="nav-li">
               Members
+            </Link>
+          </li>
+        </Box>
+        <Box className="navigation-online">
+          <Box className="navigation-title">온라인</Box>
+          <Divider />
+          <li>
+            <Link to="/forecast" className="nav-li">
+              예보게임
             </Link>
           </li>
         </Box>

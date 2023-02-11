@@ -5,14 +5,14 @@ import TextField from "@mui/material/TextField";
 import LoginUser from "components/auth/LoginUser";
 import CreateUser from "components/auth/CreateUser";
 
-const Home = ({ isLoggedin, setIsLoggedIn }) => {
+const Home = ({ isLoggedIn, setisLoggedIn }) => {
   const [createAccount, setCreateAccout] = useState(false);
   return (
     <>
       <Box className="container">
         <Box className="title">환영합니다.</Box>
       </Box>
-      {isLoggedin ? (
+      {isLoggedIn ? (
         <Box className="container">
           <Box className="title">로그인 완료됨</Box>
         </Box>
@@ -22,14 +22,14 @@ const Home = ({ isLoggedin, setIsLoggedIn }) => {
             <Box>
               <CreateUser
                 setCreateAccout={setCreateAccout}
-                setIsLoggedIn={setIsLoggedIn}
+                setisLoggedIn={setisLoggedIn}
               />
             </Box>
           ) : (
             <Box>
               <LoginUser
                 setCreateAccout={setCreateAccout}
-                setIsLoggedIn={setIsLoggedIn}
+                setisLoggedIn={setisLoggedIn}
               />
             </Box>
           )}

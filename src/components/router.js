@@ -8,32 +8,40 @@ import Offline__criteria from "routes/Offline__criteria";
 import Offline__string from "routes/Offline__string";
 import Navigation from "components/Navigation";
 import Box from "@mui/material/Box";
+import Online__forecast from "routes/Online__forecast";
 
-const AppRouter = ({ isLoggedin, setIsLoggedIn, userObj }) => {
+const AppRouter = ({ isLoggedIn, setIsLoggedIn, userObj }) => {
   return (
     <BrowserRouter>
       <Box className="main-a">
         <Box className="main-b">
-          <Navigation isLoggedin={isLoggedin} userObj={userObj} />
+          <Navigation isLoggedIn={isLoggedIn} userObj={userObj} />
         </Box>
         <Box className="main-c">
           <Routes>
             <Route
               path="/"
               element={
-                <Home isLoggedin={isLoggedin} setIsLoggedIn={setIsLoggedIn} />
+                <Home isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
               }
             />
             <Route
               path="/profile"
               element={
-                <Online__profile userObj={userObj} isLoggedin={isLoggedin} />
+                <Online__profile userObj={userObj} isLoggedIn={isLoggedIn} />
               }
             />
             <Route
               path="/member"
-              element={<Online__member isLoggedin={isLoggedin} />}
+              element={<Online__member isLoggedIn={isLoggedIn} />}
             />
+            <Route
+              path="/forecast"
+              element={
+                <Online__forecast userObj={userObj} isLoggedIn={isLoggedIn} />
+              }
+            />
+
             <Route path="/calc" element={<Offline__calc />} />
             <Route path="/criteria" element={<Offline__criteria />} />
             <Route path="/string" element={<Offline__string />} />

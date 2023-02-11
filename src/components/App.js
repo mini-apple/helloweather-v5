@@ -4,7 +4,7 @@ import { startFirebaseApp, auth } from "fbase";
 import { onAuthStateChanged } from "firebase/auth";
 
 function App() {
-  const [isLoggedin, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [init, setInit] = useState(false);
   const [userObj, setUserObj] = useState(null);
 
@@ -25,7 +25,7 @@ function App() {
     <>
       {init ? (
         <AppRouter
-          isLoggedin={isLoggedin}
+          isLoggedIn={isLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
           userObj={userObj}
         />

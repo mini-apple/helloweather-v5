@@ -78,6 +78,14 @@ body {
   font-size: 0.9rem;
 }
 
+.navigation-profile {
+  border: 1px solid rgba(5, 5, 5, 10%);
+  border-radius: 1rem;
+  display: block;
+  text-align: center;
+  margin: 0rem 0rem 2rem 0rem;
+}
+
 .navigation-online {
   border: 1px solid rgba(5, 5, 5, 10%);
   border-radius: 1rem;
@@ -185,12 +193,12 @@ body {
 }
 
 /* 멤버카드 */
-.member-year-container {
+.year-container {
   display: flex;
   justify-content: space-between;
 }
 
-.member-year-select {
+.year-select {
   width: 28rem;
 }
 
@@ -241,6 +249,27 @@ body {
   color: var(--gray);
   background-color: var(--gray-bg);
   margin: 0.3rem 0.5rem 0rem 0rem;
+}
+
+.forecast-info-container {
+  margin: 1rem;
+}
+
+.dueDate-container {
+  display: flex;
+}
+
+/* 예보게임 컨테이너 */
+.forecast-card-container {
+  border: 1px solid rgba(5, 5, 5, 10%);
+  border-radius: 0.5rem;
+  background-color: var(--box-color);
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 0rem 0rem 0.5rem 0rem;
+  line-height: 2rem;
 }
 
 /* 오프라인 */
