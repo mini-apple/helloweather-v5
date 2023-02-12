@@ -12,13 +12,20 @@ import {
   onSnapshot,
   getDoc,
 } from "firebase/firestore";
-import StringInput from "components/calc/StringInput";
+import UserAnswerCard from "./UserAnswerCard";
 import InputCloudiness from "components/input/InputCloudiness";
 import InputWindDiriction from "components/input/InputWindDirenction";
 import InputWindSpeed from "components/input/InputWindSpeed";
 import InputTemperature from "components/input/InputTemperature";
 import InputPrecipitation from "components/input/InputPrecipitation";
 import Slider from "@mui/material/Slider";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 const marks = [
   {
@@ -67,14 +74,31 @@ const marks = [
   },
 ];
 
-const ForecastInput = ({ userObj, setShowInput, inputObj }) => {
+const ForecastInput = ({ userObj, setShowInput, gameObj }) => {
   const [forecastObj, setForecastObj] = useState("");
   const [isLeader, setIsLeader] = useState(false);
+  const [forecastStatus, setForecastStatue] = useState(gameObj.forecastStatus);
+  const [answerList, setAnswerList] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  const [participantsList, setParticipantsList] = useState([]);
 
   const onGetData = async () => {
-    const docRef = doc(db, "forecast-2023-1", `${inputObj.forecastDate}`);
+    const docRef = doc(db, "forecast-2023-1", `${gameObj.forecastDate}`);
     const docSnap = await getDoc(docRef);
     setForecastObj(docSnap.data());
+
+    const UIDList = gameObj.userList;
+    console.log("UIDList", UIDList);
+
+    const tmpParticipantsList = [];
+    for (let i = 0; i < UIDList.length; i++) {
+      const j = UIDList[i];
+      const tmp = gameObj.userAnswerObj[j];
+      tmpParticipantsList.push(tmp);
+    }
+    console.log("참여자객체", tmpParticipantsList);
+    setParticipantsList(tmpParticipantsList);
+
+    console.log("onGetData");
   };
 
   const [evid, setEvid] = useState(10);
@@ -104,14 +128,6 @@ const ForecastInput = ({ userObj, setShowInput, inputObj }) => {
   const [text7, setText7] = useState("");
   const [text8, setText8] = useState("");
   const [text9, setText9] = useState("");
-
-  useEffect(() => {
-    onGetData();
-    console.log(inputObj.leaderUID, userObj.uid);
-    if (inputObj.leaderUID === userObj.uid) {
-      setIsLeader(true);
-    }
-  }, []);
 
   // 근거개수입력
   const onEvidChange = (event) => {
@@ -163,7 +179,6 @@ const ForecastInput = ({ userObj, setShowInput, inputObj }) => {
     //uid로 이름찾기
     const UIDList = Object.keys(forecastObj.userAnswerObj);
     const nameList = [];
-
     try {
       const q = query(collection(db, "users"), where("uid", "in", UIDList));
 
@@ -434,12 +449,9 @@ const ForecastInput = ({ userObj, setShowInput, inputObj }) => {
       console.log("diff", diff, "res", res, "score", sum);
 
       const newForecastObj = forecastObj;
-      newForecastObj.forecastStatus = false;
+      // newForecastObj.forecastStatus = false;
       newForecastObj.userAnswerObj[uid] = {
-        userName: forecastObj.userAnswerObj[uid].userName,
-        userUID: forecastObj.userAnswerObj[uid].userUID,
-        userAnswer: forecastObj.userAnswerObj[uid].userAnswer,
-        userEvid: forecastObj.userAnswerObj[uid].userEvid,
+        ...forecastObj.userAnswerObj[uid],
         userDifference: diff,
         userResult: res,
         userScore: sum,
@@ -458,137 +470,377 @@ const ForecastInput = ({ userObj, setShowInput, inputObj }) => {
     setShowInput(false);
   };
 
+  const onAnswerConvert = () => {
+    let inpList = gameObj.leaderAnswer.split("/");
+    let newList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+    // 3.정답 표시해주기
+    // 3-1. L1 운량
+    newList[0] = inpList[0];
+    // 3-2. 풍향
+    if (inpList[1] === "0") {
+      newList[1] = "N";
+    } else if (inpList[1] === "22.5") {
+      newList[1] = "NNE";
+    } else if (inpList[1] === "45") {
+      newList[1] = "NE";
+    } else if (inpList[1] === "67.5") {
+      newList[1] = "ENE";
+    } else if (inpList[1] === "90") {
+      newList[1] = "E";
+    } else if (inpList[1] === "112.5") {
+      newList[1] = "ESE";
+    } else if (inpList[1] === "135") {
+      newList[1] = "SE";
+    } else if (inpList[1] === "157.5") {
+      newList[1] = "SSE";
+    } else if (inpList[1] === "180") {
+      newList[1] = "S";
+    } else if (inpList[1] === "202.5") {
+      newList[1] = "SSW";
+    } else if (inpList[1] === "225") {
+      newList[1] = "SW";
+    } else if (inpList[1] === "247.5") {
+      newList[1] = "WSW";
+    } else if (inpList[1] === "270") {
+      newList[1] = "W";
+    } else if (inpList[1] === "292.5") {
+      newList[1] = "WNW";
+    } else if (inpList[1] === "315") {
+      newList[1] = "NW";
+    } else if (inpList[1] === "337.5") {
+      newList[1] = "NNW";
+    }
+    // 3-3.풍속
+    if (inpList[2] === "0") {
+      newList[2] = "0 m/s ≤ ~ < 0.5 m/s";
+    } else if (inpList[2] === "1") {
+      newList[2] = "0.5 m/s ≤ ~ < 5 m/s";
+    } else if (inpList[2] === "2") {
+      newList[2] = "5 m/s ≤ ~ < 10 m/s";
+    } else if (inpList[2] === "3") {
+      newList[2] = "10 m/s ≤ ~ < 15 m/s";
+    } else if (inpList[2] === "4") {
+      newList[2] = "15 m/s ≤ ~ < 20 m/s";
+    } else if (inpList[2] === "5") {
+      newList[2] = "20 m/s 이상";
+    }
+    // 3-4.기온
+    newList[3] = inpList[3];
+    // 3-5. 강수량
+    if (inpList[4] === "0") {
+      newList[4] = "X";
+    } else if (inpList[4] === "1") {
+      newList[4] = "0.0 mm ≤ ~ < 5 mm";
+    } else if (inpList[4] === "2") {
+      newList[4] = "5 mm ≤ ~ < 10 mm";
+    } else if (inpList[4] === "3") {
+      newList[4] = "10 mm ≤ ~ < 20 mm";
+    } else if (inpList[4] === "4") {
+      newList[4] = "20 mm ≤ ~ < 30 mm";
+    } else if (inpList[4] === "5") {
+      newList[4] = "30 mm ≤ ~ < 50 mm";
+    } else if (inpList[4] === "6") {
+      newList[4] = "50 mm ≤ ~ < 80 mm";
+    } else if (inpList[4] === "7") {
+      newList[4] = "80 mm ≤ ~ < 120 mm";
+    } else if (inpList[4] === "8") {
+      newList[4] = "120 mm 이상";
+    }
+    // 3-1. L1 운량
+    newList[5] = inpList[5];
+    // 3-2. 풍향
+    if (inpList[6] === "0") {
+      newList[6] = "N";
+    } else if (inpList[6] === "22.5") {
+      newList[6] = "NNE";
+    } else if (inpList[6] === "45") {
+      newList[6] = "NE";
+    } else if (inpList[6] === "67.5") {
+      newList[6] = "ENE";
+    } else if (inpList[6] === "90") {
+      newList[6] = "E";
+    } else if (inpList[6] === "112.5") {
+      newList[6] = "ESE";
+    } else if (inpList[6] === "135") {
+      newList[6] = "SE";
+    } else if (inpList[6] === "157.5") {
+      newList[6] = "SSE";
+    } else if (inpList[6] === "180") {
+      newList[6] = "S";
+    } else if (inpList[6] === "202.5") {
+      newList[6] = "SSW";
+    } else if (inpList[6] === "225") {
+      newList[6] = "SW";
+    } else if (inpList[6] === "247.5") {
+      newList[6] = "WSW";
+    } else if (inpList[6] === "270") {
+      newList[6] = "W";
+    } else if (inpList[6] === "292.5") {
+      newList[6] = "WNW";
+    } else if (inpList[6] === "315") {
+      newList[6] = "NW";
+    } else if (inpList[6] === "337.5") {
+      newList[6] = "NNW";
+    }
+    // 3-3.풍속
+    if (inpList[7] === "0") {
+      newList[7] = "0 m/s ≤ ~ < 0.5 m/s";
+    } else if (inpList[7] === "1") {
+      newList[7] = "0.5 m/s ≤ ~ < 5 m/s";
+    } else if (inpList[7] === "2") {
+      newList[7] = "5 m/s ≤ ~ < 10 m/s";
+    } else if (inpList[7] === "3") {
+      newList[7] = "10 m/s ≤ ~ < 15 m/s";
+    } else if (inpList[7] === "4") {
+      newList[7] = "15 m/s ≤ ~ < 20 m/s";
+    } else if (inpList[7] === "5") {
+      newList[7] = "20 m/s 이상";
+    }
+    // 3-4.기온
+    newList[8] = inpList[8];
+    // 3-5. 강수량
+    if (inpList[9] === "0") {
+      newList[9] = "X";
+    } else if (inpList[9] === "1") {
+      newList[9] = "0.0 mm ≤ ~ < 5 mm";
+    } else if (inpList[9] === "2") {
+      newList[9] = "5 mm ≤ ~ < 10 mm";
+    } else if (inpList[9] === "3") {
+      newList[9] = "10 mm ≤ ~ < 20 mm";
+    } else if (inpList[9] === "4") {
+      newList[9] = "20 mm ≤ ~ < 30 mm";
+    } else if (inpList[9] === "5") {
+      newList[9] = "30 mm ≤ ~ < 50 mm";
+    } else if (inpList[9] === "6") {
+      newList[9] = "50 mm ≤ ~ < 80 mm";
+    } else if (inpList[9] === "7") {
+      newList[9] = "80 mm ≤ ~ < 120 mm";
+    } else if (inpList[9] === "8") {
+      newList[9] = "120 mm 이상";
+    }
+    setAnswerList(newList);
+  };
+
+  useEffect(() => {
+    console.log("input useEffect");
+    onGetData();
+    if (gameObj.leaderUID === userObj.uid) {
+      setIsLeader(true);
+    }
+    try {
+      onAnswerConvert();
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+    console.log(gameObj);
+  }, []);
+
   return (
     <>
-      <Box className="container">
-        <Box className="title">예보정보</Box>
-        <Box>일시: {forecastObj.forecastDate}</Box>
-        <Box>출제자: {forecastObj.leaderName}</Box>
-        <Box>참여자: {userObj.displayName}</Box>
-        <Box>
-          <Button
-            variant="outlined"
-            color="success"
-            size="small"
-            onClick={() => setShowInput(false)}
-          >
-            돌아가기
-          </Button>
-          {isLeader ? (
-            <>
-              <Button variant="outlined" size="small" onClick={onSetUsers}>
-                참여자 확정하기
-              </Button>
+      {forecastStatus ? (
+        <>
+          <Box className="container">
+            <Box className="title">예보정보</Box>
+            <Box>일시: {forecastObj.forecastDate}</Box>
+            <Box>출제자: {forecastObj.leaderName}</Box>
+            <Box>참여자: {userObj.displayName}</Box>
+            <Box>
               <Button
                 variant="outlined"
+                color="success"
                 size="small"
-                color="error"
-                onClick={onCalculate}
+                onClick={() => setShowInput(false)}
               >
-                채점하기
+                돌아가기
               </Button>
-            </>
-          ) : (
-            <Box></Box>
-          )}
-        </Box>
-      </Box>
-      <Box className="container">
-        <Box className="title">나의 답안</Box>
-        <Box className="input-container">
-          <Box className="location-container">
-            <Box className="location-title">지역1</Box>
-            <InputCloudiness
-              data={L1}
-              setData={setL1}
-              text={text0}
-              setText={setText0}
-            />
-            <InputWindDiriction
-              data={L1}
-              setData={setL1}
-              text={text1}
-              setText={setText1}
-            />
-            <InputWindSpeed
-              data={L1}
-              setData={setL1}
-              text={text2}
-              setText={setText2}
-            />
-            <InputTemperature
-              data={L1}
-              setData={setL1}
-              text={text3}
-              setText={setText3}
-            />
-            <InputPrecipitation
-              data={L1}
-              setData={setL1}
-              text={text4}
-              setText={setText4}
-            />
+              {isLeader ? (
+                <>
+                  <Button variant="outlined" size="small" onClick={onSetUsers}>
+                    참여자 확정하기
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    color="error"
+                    onClick={onCalculate}
+                  >
+                    채점하기
+                  </Button>
+                </>
+              ) : (
+                <Box></Box>
+              )}
+            </Box>
           </Box>
-          <Box className="location-container">
-            <Box className="location-title">지역2</Box>
-            <InputCloudiness
-              data={L2}
-              setData={setL2}
-              text={text5}
-              setText={setText5}
-            />
-            <InputWindDiriction
-              data={L2}
-              setData={setL2}
-              text={text6}
-              setText={setText6}
-            />
-            <InputWindSpeed
-              data={L2}
-              setData={setL2}
-              text={text7}
-              setText={setText7}
-            />
-            <InputTemperature
-              data={L2}
-              setData={setL2}
-              text={text8}
-              setText={setText8}
-            />
-            <InputPrecipitation
-              data={L2}
-              setData={setL2}
-              text={text9}
-              setText={setText9}
-            />
-          </Box>
-        </Box>
-      </Box>
-      <Box className="container">
-        <Box className="title">근거개수 및 정답제출하기</Box>
-        <Box className="evid-container">
-          <Box>근거개수 : {evid}개</Box>
-          <Slider
-            defaultValue={10}
-            value={evid}
-            onChange={onEvidChange}
-            valueLabelDisplay="auto"
-            step={1}
-            marks={marks}
-            min={0}
-            max={10}
-          />
-        </Box>
 
-        <Button
-          variant="outlined"
-          size="small"
-          color="primary"
-          onClick={onSubmit}
-        >
-          제출하기
-        </Button>
-      </Box>
+          <Box className="container">
+            <Box className="title">나의 답안</Box>
+            <Box className="input-container">
+              <Box className="location-container">
+                <Box className="location-title">지역1</Box>
+                <InputCloudiness
+                  data={L1}
+                  setData={setL1}
+                  text={text0}
+                  setText={setText0}
+                />
+                <InputWindDiriction
+                  data={L1}
+                  setData={setL1}
+                  text={text1}
+                  setText={setText1}
+                />
+                <InputWindSpeed
+                  data={L1}
+                  setData={setL1}
+                  text={text2}
+                  setText={setText2}
+                />
+                <InputTemperature
+                  data={L1}
+                  setData={setL1}
+                  text={text3}
+                  setText={setText3}
+                />
+                <InputPrecipitation
+                  data={L1}
+                  setData={setL1}
+                  text={text4}
+                  setText={setText4}
+                />
+              </Box>
+              <Box className="location-container">
+                <Box className="location-title">지역2</Box>
+                <InputCloudiness
+                  data={L2}
+                  setData={setL2}
+                  text={text5}
+                  setText={setText5}
+                />
+                <InputWindDiriction
+                  data={L2}
+                  setData={setL2}
+                  text={text6}
+                  setText={setText6}
+                />
+                <InputWindSpeed
+                  data={L2}
+                  setData={setL2}
+                  text={text7}
+                  setText={setText7}
+                />
+                <InputTemperature
+                  data={L2}
+                  setData={setL2}
+                  text={text8}
+                  setText={setText8}
+                />
+                <InputPrecipitation
+                  data={L2}
+                  setData={setL2}
+                  text={text9}
+                  setText={setText9}
+                />
+              </Box>
+            </Box>
+          </Box>
+          <Box className="container">
+            <Box className="title">근거개수 및 정답제출하기</Box>
+            <Box className="evid-container">
+              <Box>근거개수 : {evid}개</Box>
+              <Slider
+                defaultValue={10}
+                value={evid}
+                onChange={onEvidChange}
+                valueLabelDisplay="auto"
+                step={1}
+                marks={marks}
+                min={0}
+                max={10}
+              />
+            </Box>
+
+            <Button
+              variant="outlined"
+              size="small"
+              color="primary"
+              onClick={onSubmit}
+            >
+              제출하기
+            </Button>
+          </Box>
+        </>
+      ) : (
+        <>
+          <Box className="container">
+            <Box className="title">예보정보</Box>
+            <Box>일시: {forecastObj.forecastDate}</Box>
+            <Box>인도자: {forecastObj.leaderName}</Box>
+            <Box>정답표</Box>
+            <TableContainer component={Paper}>
+              <Table size="small">
+                <TableHead>
+                  <TableRow>
+                    <TableCell></TableCell>
+                    <TableCell component="th" align="center">
+                      지역1
+                    </TableCell>
+                    <TableCell component="th" align="center">
+                      지역2
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow>
+                    <TableCell align="center">운량</TableCell>
+                    <TableCell align="center">{answerList[0]}</TableCell>
+                    <TableCell align="center">{answerList[5]}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell align="center">풍향</TableCell>
+                    <TableCell align="center">{answerList[1]}</TableCell>
+                    <TableCell align="center">{answerList[6]}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell align="center">풍속</TableCell>
+                    <TableCell align="center">{answerList[2]}</TableCell>
+                    <TableCell align="center">{answerList[7]}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell align="center">기온</TableCell>
+                    <TableCell align="center">{answerList[3]}</TableCell>
+                    <TableCell align="center">{answerList[8]}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell align="center">강수량</TableCell>
+                    <TableCell align="center">{answerList[4]}</TableCell>
+                    <TableCell align="center">{answerList[9]}</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+
+            <Button
+              variant="outlined"
+              color="success"
+              size="small"
+              onClick={() => setShowInput(false)}
+            >
+              돌아가기
+            </Button>
+          </Box>
+          <Box className="container">
+            <Box className="title">예보결과</Box>
+            {participantsList.map((userAttrObj) => (
+              <UserAnswerCard
+                key={userAttrObj.userUID}
+                userAttrObj={userAttrObj}
+              />
+            ))}
+          </Box>
+        </>
+      )}
     </>
   );
 };

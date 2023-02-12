@@ -35,7 +35,7 @@ body {
 }
 
 .main-c {
-  width: 35rem;
+  width: 36rem;
 }
 
 /* 네비게이션 바 */
@@ -270,6 +270,29 @@ body {
   justify-content: space-between;
   margin: 0rem 0rem 0.5rem 0rem;
   line-height: 2rem;
+}
+
+.show-answer-table {
+  background-color: var(--blue-bg);
+  color: var(--blue);
+  text-align: center;
+  width: 6rem;
+  border-radius: 1rem;
+}
+
+.user-answer-card-container {
+  border: 1px solid rgba(5, 5, 5, 10%);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  margin: 0rem 0rem 0.5rem 0rem;
+}
+
+.user-answer-card {
+  display: flex;
+  justify-content: space-between;
+  line-height: 2rem;
+
+  font-size: 0.9rem;
 }
 
 /* 오프라인 */

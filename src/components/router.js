@@ -9,6 +9,7 @@ import Offline__string from "routes/Offline__string";
 import Navigation from "components/Navigation";
 import Box from "@mui/material/Box";
 import Online__forecast from "routes/Online__forecast";
+import Online__result from "routes/Online__result";
 
 const AppRouter = ({ isLoggedIn, setIsLoggedIn, userObj }) => {
   return (
@@ -39,6 +40,12 @@ const AppRouter = ({ isLoggedIn, setIsLoggedIn, userObj }) => {
               path="/forecast"
               element={
                 <Online__forecast userObj={userObj} isLoggedIn={isLoggedIn} />
+              }
+            />
+            <Route
+              path="/result"
+              element={
+                <Online__result userObj={userObj} isLoggedIn={isLoggedIn} />
               }
             />
 

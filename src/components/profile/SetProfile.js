@@ -60,7 +60,6 @@ const SetProfile = ({ userObj }) => {
 
     if (!querySnapshot.empty) {
       onSnapshot(doc(db, "users", profile.uid), (doc) => {
-        console.log(doc.data());
         setProfile(doc.data());
       });
     }

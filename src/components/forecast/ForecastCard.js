@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
-const ForecastCard = ({ gameAttrObj, setShowInput, setInputObj }) => {
+const ForecastCard = ({ gameAttrObj, setShowInput, setGameObj }) => {
   const onGameClick = () => {
     setShowInput(true);
-    setInputObj(gameAttrObj);
+    setGameObj(gameAttrObj);
   };
 
   return (
@@ -24,8 +24,13 @@ const ForecastCard = ({ gameAttrObj, setShowInput, setInputObj }) => {
           진행중
         </Button>
       ) : (
-        <Button variant="outlined" size="small" color="secondary">
-          결과보기
+        <Button
+          variant="outlined"
+          size="small"
+          color="error"
+          onClick={onGameClick}
+        >
+          마감
         </Button>
       )}
     </Box>

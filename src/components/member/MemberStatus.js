@@ -88,7 +88,7 @@ const MemberStatus = () => {
         <Box className="title">{titleYear}</Box>
         <Box className="member-card-container">
           {memberList.map((userAttrObj) => (
-            <MemberCard key={userAttrObj} userAttrObj={userAttrObj} />
+            <MemberCard key={userAttrObj.uid} userAttrObj={userAttrObj} />
           ))}
         </Box>
       </Box>

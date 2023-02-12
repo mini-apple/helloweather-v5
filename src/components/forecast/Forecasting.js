@@ -48,7 +48,7 @@ const Forecasting = ({ userObj }) => {
   const [makeRoom, setMakeRoom] = useState(false);
   const [dueDate, setDueDate] = useState("");
   const [showInput, setShowInput] = useState(false);
-  const [inputObj, setInputObj] = useState("");
+  const [gameObj, setGameObj] = useState("");
 
   const handleChange = async (event) => {
     const {
@@ -164,7 +164,7 @@ const Forecasting = ({ userObj }) => {
         <ForecastInput
           userObj={userObj}
           setShowInput={setShowInput}
-          inputObj={inputObj}
+          gameObj={gameObj}
         />
       ) : (
         <>
@@ -199,10 +199,10 @@ const Forecasting = ({ userObj }) => {
             <Box>
               {gameList.map((gameAttrObj) => (
                 <ForecastCard
-                  key={gameAttrObj}
+                  key={gameAttrObj.forecastDate}
                   gameAttrObj={gameAttrObj}
                   setShowInput={setShowInput}
-                  setInputObj={setInputObj}
+                  setGameObj={setGameObj}
                 />
               ))}
             </Box>
