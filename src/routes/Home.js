@@ -9,13 +9,15 @@ const Home = ({ isLoggedIn, setisLoggedIn }) => {
   const [createAccount, setCreateAccout] = useState(false);
   return (
     <>
-      <Box className="container">
-        <Box className="title">환영합니다.</Box>
-      </Box>
       {isLoggedIn ? (
-        <Box className="container">
-          <Box className="title">로그인 완료됨</Box>
-        </Box>
+        <>
+          <Box className="container">
+            <Box className="title">환영합니다. </Box>
+          </Box>
+          <Box className="container">
+            <Box className="title">로그인 완료됨</Box>
+          </Box>
+        </>
       ) : (
         <>
           {createAccount ? (

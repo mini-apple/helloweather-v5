@@ -10,7 +10,9 @@ const Navigation = ({ isLoggedIn, userObj }) => {
         <Box className="navigation-home">
           <li>
             <Link to="/" className="nav-li">
-              Hello Weather
+              <span className="navigation-title-h">H</span>ello{" "}
+              <span className="navigation-title-w">W</span>
+              eather
             </Link>
           </li>
         </Box>
@@ -36,7 +38,7 @@ const Navigation = ({ isLoggedIn, userObj }) => {
           </li>
         </Box>
         <Box className="navigation-online">
-          <Box className="navigation-title">온라인</Box>
+          <Box className="navigation-online-title">온라인</Box>
           <Divider />
           <li>
             <Link to="/forecast" className="nav-li">
@@ -45,7 +47,7 @@ const Navigation = ({ isLoggedIn, userObj }) => {
           </li>
         </Box>
         <Box className="navigation-offline">
-          <Box className="navigation-title">오프라인</Box>
+          <Box className="navigation-offline-title">오프라인</Box>
           <Divider />
           <li>
             <Link to="/calc" className="nav-li">

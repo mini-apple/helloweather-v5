@@ -135,8 +135,10 @@ const SetProfile = ({ userObj }) => {
           displayName: newProfileObj.name,
         });
       }
+      alert("프로필이 저장되었습니다!");
     } catch (e) {
       console.error("Error adding document: ", e);
+      alert("프로필 변경에 실패했습니다!");
     }
 
     console.log(userObj);

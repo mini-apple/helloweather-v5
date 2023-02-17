@@ -125,28 +125,25 @@ const Forecasting = ({ userObj }) => {
     };
 
     console.log(newForecastObj);
-
+    const selectSemester = selectYear.slice(0, 6);
     // firestore에 newforecastObj를 저장
     try {
       const docRef = await setDoc(
-        doc(
-          db,
-          `forecast-${currentYear}-${currentSemester}`,
-          `${newForecastObj.forecastDate}`
-        ),
+        doc(db, `forecast-${selectSemester}`, `${newForecastObj.forecastDate}`),
         newForecastObj
       );
+      alert("등록이 완료되었습니다!");
     } catch (e) {
       console.error("Error adding document: ", e);
+      alert("등록에 실패 했습니다!");
     }
   };
 
   const onGetGame = async () => {
     const list = [];
-    const selectYearRef = collection(
-      db,
-      `forecast-${currentYear}-${currentSemester}`
-    );
+    console.log("selectYear", selectYear.slice(0, 6));
+    const selectSemester = selectYear.slice(0, 6);
+    const selectYearRef = collection(db, `forecast-${selectSemester}`);
 
     const querySnapshot = await getDocs(selectYearRef);
 

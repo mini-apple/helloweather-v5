@@ -170,8 +170,10 @@ const ForecastInput = ({ userObj, setShowInput, gameObj }) => {
         doc(db, `forecast-2023-1`, `${forecastObj.forecastDate}`),
         newForecastObj
       );
+      alert("정답을 제출했습니다!");
     } catch (e) {
       console.error("Error adding document: ", e);
+      alert("정답 제출 실패!");
     }
   };
 
@@ -449,7 +451,7 @@ const ForecastInput = ({ userObj, setShowInput, gameObj }) => {
       console.log("diff", diff, "res", res, "score", sum);
 
       const newForecastObj = forecastObj;
-      // newForecastObj.forecastStatus = false;
+      newForecastObj.forecastStatus = false;
       newForecastObj.userAnswerObj[uid] = {
         ...forecastObj.userAnswerObj[uid],
         userDifference: diff,
@@ -463,8 +465,10 @@ const ForecastInput = ({ userObj, setShowInput, gameObj }) => {
           doc(db, `forecast-2023-1`, `${forecastObj.forecastDate}`),
           newForecastObj
         );
+        alert("채점이 완료되었습니다!");
       } catch (e) {
         console.error("Error adding document: ", e);
+        alert("채점에 실패했습니다!");
       }
     }
     setShowInput(false);
@@ -645,6 +649,7 @@ const ForecastInput = ({ userObj, setShowInput, gameObj }) => {
             <Box>일시: {forecastObj.forecastDate}</Box>
             <Box>출제자: {forecastObj.leaderName}</Box>
             <Box>참여자: {userObj.displayName}</Box>
+            <Box>반드시 참여자 확정하기를 한 후 채점하기를 눌러주세요!</Box>
             <Box>
               <Button
                 variant="outlined"

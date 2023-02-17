@@ -3,12 +3,20 @@ import { auth } from "fbase";
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
-  signInWithRedirect,
+  signInWithPopup,
 } from "firebase/auth";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import InputAdornment from "@mui/material/InputAdornment";
+import FormControl from "@mui/material/FormControl";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 
 function LoginUser({ setCreateAccout, setIsLoggedIn }) {
   const [email, setEmail] = useState("");
@@ -38,56 +46,95 @@ function LoginUser({ setCreateAccout, setIsLoggedIn }) {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
+        alert(
+          `로그인 오류 정보\nerrorCode:  ${errorCode} \nerrorMessage:  ${errorMessage}`
+        );
       });
   };
 
   const onGoogleLogin = async () => {
     const provider = new GoogleAuthProvider();
-    await signInWithRedirect(auth, provider).then(() => {
+    await signInWithPopup(auth, provider).then(() => {
       setIsLoggedIn(true);
     });
+  };
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
   };
 
   return (
     <>
       <Box className="container">
-        <Box className="title">로그인</Box>
+        <Box className="title">로그인 후 이용해주세요!</Box>
         <Box className="sign-in-email-container">
           <Box>
-            <Box>
-              <Box>email</Box>
-              <TextField
-                name="email"
-                label="E-mail"
-                variant="outlined"
-                size="small"
-                value={email}
-                onChange={onChange}
-              />
+            <Box className="email-input-box">
+              <Box className="email-input-box-title">
+                이메일/비밀번호 로그인
+              </Box>
+              <Box className="email-input-field">
+                <TextField
+                  fullWidth
+                  name="email"
+                  label="이메일"
+                  variant="outlined"
+                  size="small"
+                  value={email}
+                  onChange={onChange}
+                />
+              </Box>
+              <Box className="email-input-field">
+                <FormControl size="small" variant="outlined" fullWidth>
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    비밀번호
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-password"
+                    type={showPassword ? "text" : "password"}
+                    label="비밀번호"
+                    name="password"
+                    value={password}
+                    onChange={onChange}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl>
+              </Box>
+              <Box>
+                <Button
+                  fullWidth
+                  size="small"
+                  variant="outlined"
+                  onClick={onEmailLogin}
+                >
+                  로그인
+                </Button>
+              </Box>
             </Box>
             <Box>
-              <Box>비밀번호</Box>
-              <TextField
-                name="password"
-                label="Password"
-                variant="outlined"
-                size="small"
-                value={password}
-                onChange={onChange}
-              />
+              <Box className="email-input-box-title">소셜 로그인</Box>
+              <button onClick={onGoogleLogin} className="btn-google">
+                Google로 로그인하기
+              </button>
             </Box>
-            <Box>
-              <Button variant="outlined" onClick={onEmailLogin}>
-                로그인
-              </Button>
-            </Box>
-          </Box>
-          <Box>
-            <Button variant="outlined" onClick={onGoogleLogin}>
-              Login with Google
-            </Button>
           </Box>
         </Box>
+
         <Box className="sign-in-toggle">
           <Divider />
           <Button variant="text" onClick={() => setCreateAccout(true)}>
